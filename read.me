@@ -1,0 +1,32 @@
+Phase 1 : Finaliser le core (contrats, validations, paiements) (4-6 jours)
+
+Génération de contrats : Après acceptation candidature, générer PDF template (avec jsPDF front, ou TCPDF back), inclure clauses sur visuels/pose/paiements. Pages "Mes contrats" pour chaque rôle.
+Validations mensuelles : Page conducteurs pour soumettre photos/kilométrage (upload simple local), page admin pour valider/refuser.
+Paiements : Calcul commission 12%, page "Mes paiements" pour voir historiques (conducteurs reçoivent net, annonceurs paient total).
+BDD : Tables contrats, validations, paiements (déjà en place, ajoute visuel_notes TEXT à annonces pour notes sur visuels).
+Test : Accepte candidature, génère contrat, soumets validation, calcule paiement.
+Phase 2 : Intégrer les innovations (visuels, pose, ROI) (5-7 jours)
+
+Visuels des pubs : Lors création annonce, ajoute upload images (v-file-input), stocke URLs dans annonces (endpoint upload_visuel.php avec move_uploaded_file pour local, ou Cloudinary pour cloud). Preview simple avec v-img.
+Accompagnement pose : Dans création annonce, ajoute un champ "Notes pose" (texte), et un bouton "Trouver poseur local" qui utilise Google Places API pour lister poseurs près de localisation (endpoint get_poseurs.php avec API).
+Calculateur ROI : Dans création annonce, ajoute un formulaire (valeur client, taux conversion), calcule ROI estimé (front avec computed, ou back pour précision). Affiche dans étape 3 : "ROI estimé : X% (basé sur Y impressions/jour)".
+BDD : Ajoute visuel_urls TEXT[] à annonces pour tableau URLs images.
+Test : Crée annonce avec image, calcule ROI, cherche poseur.
+Phase 3 : Notifications, UX et sécurité (2-3 jours)
+
+Notifications : Page "Notifications" ou badge dans dashboards pour nouvelles candidatures/validations (endpoint get_notifications.php, table notifications).
+UX amélioré : Ajoute previews contrats, stats ROI dans dashboards.
+Sécurité : Guard router pour vérifier token/role, rate limiting sur API.
+BDD : Table notifications (id, user_id, message, read, created_at).
+Test : Nouvelle candidature → notification annonceur.
+Phase 4 : Tests et déploiement (3-5 jours)
+
+Tests : Unitaires front (Vitest), API (Postman), end-to-end (Cypress).
+Déploiement : Front Vercel/Netlify, back Heroku avec PostgreSQL addon.
+SEO/Vitrine : Pages explications (comment ça marche, ROI vs classiques).
+Phase 5 : Bonus et optimisations (post-MVP, 4-6 jours)
+
+RDV pose : Intégration Calendly/Google Calendar pour prendre RDV avec poseurs.
+Visuels AI : Bouton "Générer visuel AI" avec DALL-E API.
+ROI avancé : Intègre maps pour estimer impressions basées sur localisation (ex. +20% en urbain).
+App mobile : Export Vue pour Android/iOS avec Capacitor.
