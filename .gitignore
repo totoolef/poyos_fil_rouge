@@ -23,3 +23,4 @@ dist-ssr
 *.sln
 *.sw?
 php/uploads/pose_videos/*.mp4
+php/**/uploads/**
