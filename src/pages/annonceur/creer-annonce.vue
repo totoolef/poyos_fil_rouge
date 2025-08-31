@@ -255,7 +255,7 @@ const publierAnnonce = async () => {
   enCoursDePublication.value = true;
   try {
     const token = localStorage.getItem('token');
-    const reponse = await axios.post('http://localhost:8000/creer_annonce.php', {
+    const reponse = await axios.post('http://localhost:8080/annonces/creer_annonce.php', {
       type_pub: annonce.value.type,
       titre: annonce.value.titre,
       description: annonce.value.description,
@@ -272,7 +272,7 @@ const publierAnnonce = async () => {
     });
     if (reponse.data.success) {
       alert('Annonce publiée avec succès !');
-      routeur.push('/dashboard/annonces-postees');
+      routeur.push('/dashboard-annonceur/annonces-postees');
     } else {
       alert(reponse.data.message || 'Échec de la publication');
     }

@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="pa-4">
+  <v-container fluid class="pa-4 mt-8">
     <v-card class="elevation-3 rounded-lg pa-4">
       <h2 class="text-h6 mb-4">Candidatures reçues</h2>
       <v-tabs v-model="tabStatut" color="primary" align-tabs="center" class="mb-4">
@@ -151,7 +151,7 @@ const chargerCandidatures = async () => {
   }
 
   try {
-    const reponse = await axios.get('http://localhost:8000/get_candidatures_annonceur.php', {
+    const reponse = await axios.get('http://localhost:8080/candidatures/get_candidatures_annonceur.php', {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (reponse.data.success) {
@@ -182,7 +182,7 @@ const genererContratPreview = async () => {
   }
   const token = localStorage.getItem('token');
   try {
-    const reponse = await axios.post('http://localhost:8000/generer_contrat.php', {
+    const reponse = await axios.post('http://localhost:8080/contrats/generer_contrat.php', {
       candidature_id: candidatureSelectionnee.value.id,
     }, {
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
@@ -224,7 +224,7 @@ const accepterCandidature = async (candidature: Candidature) => {
   if (confirm('Voulez-vous accepter cette candidature ?')) {
     try {
       const token = localStorage.getItem('token');
-      const reponse = await axios.post('http://localhost:8000/modifier_statut_candidature.php', {
+      const reponse = await axios.post('http://localhost:8080/candidatures/modifier_statut_candidature.php', {
         candidature_id: candidature.id,
         statut: 'acceptee',
       }, {
@@ -247,7 +247,7 @@ const refuserCandidature = async (candidature: Candidature) => {
   if (confirm('Voulez-vous refuser cette candidature ?')) {
     try {
       const token = localStorage.getItem('token');
-      const reponse = await axios.post('http://localhost:8000/modifier_statut_candidature.php', {
+      const reponse = await axios.post('http://localhost:8080/candidatures/modifier_statut_candidature.php', {
         candidature_id: candidature.id,
         statut: 'refusee',
       }, {

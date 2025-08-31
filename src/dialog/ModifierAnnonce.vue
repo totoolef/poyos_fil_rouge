@@ -154,7 +154,7 @@ const soumettreModifications = async () => {
   enCoursDeSoumission.value = true;
   try {
     const token = localStorage.getItem('token');
-    const reponse = await axios.post('http://localhost:8000/modifier_annonce.php', {
+    const reponse = await axios.post('http://localhost:8080/annonces/modifier_annonce.php', {
       id: props.annonce?.id,
       type_pub: formulaire.value.typePub,
       titre: formulaire.value.titre,

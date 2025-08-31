@@ -189,7 +189,7 @@ const soumettreInscription = async () => {
   }
   enCoursDeSoumission.value = true;
   try {
-    const reponse = await axios.post('http://localhost:8000/inscription_annonceur.php', {
+    const reponse = await axios.post('http://localhost:8080/authentification/inscription_annonceur.php', {
       email: formulaire.value.email,
       mot_de_passe: formulaire.value.motdepasse,
       nom: formulaire.value.nom,

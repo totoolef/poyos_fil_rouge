@@ -132,7 +132,7 @@ onMounted(async () => {
   }
 
   try {
-    const reponse = await axios.get('http://localhost:8000/get_utilisateur_infos.php', {
+    const reponse = await axios.get('http://localhost:8080/utilisateurs/get_utilisateur_infos.php', {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (reponse.data.success) {
@@ -159,7 +159,7 @@ const soumettreModifications = async () => {
   messageSucces.value = null;
   messageErreur.value = null;
   try {
-    const reponse = await axios.post('http://localhost:8000/modifier_parametres_annonceur.php', {
+    const reponse = await axios.post('http://localhost:8080/utilisateurs/modifier_parametres_annonceur.php', {
       id: localStorage.getItem('userId'), // Supposé stocké après connexion
       email: formulaire.value.email,
       mot_de_passe: formulaire.value.motDePasse, // Seulement si modifié

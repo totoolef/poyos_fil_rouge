@@ -94,9 +94,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useUserStore } from '../stores/utilisateurStores';
 import axios from 'axios';
 
 const routeur = useRouter();
+const userStore = useUserStore();
 const enCoursDeConnexion = ref(false);
 const erreurConnexion = ref<string | null>(null);
 const formulaire = ref({
@@ -121,7 +123,7 @@ const connexion = async () => {
   erreurConnexion.value = null;
   try {
     console.log('Données envoyées:', formulaire.value);
-    const reponse = await axios.post('http://localhost:8000/connexion.php', {
+    const reponse = await axios.post('http://localhost:8080/authentification/connexion.php', {
       email: formulaire.value.email,
       mot_de_passe: formulaire.value.motDePasse,
       role: formulaire.value.role,
@@ -130,12 +132,18 @@ const connexion = async () => {
     });
     console.log('Réponse reçue:', reponse.data);
     if (reponse.data.success) {
-      localStorage.setItem('token', reponse.data.token); // Stocke le token
-      localStorage.setItem('role', reponse.data.role); // Stocke le rôle
+      // Utiliser le store pour mettre à jour l'état d'authentification
+      userStore.login({
+        role: reponse.data.role,
+        token: reponse.data.token,
+        id: reponse.data.id || '0'
+      });
+      
+      // Redirection sera gérée par le router guard
       if (reponse.data.role === 'conducteur') {
-        routeur.push('/dashboard-conducteur/annonces-disponibles');
+        routeur.push('/dashboard-conducteur/campagnes');
       } else if (reponse.data.role === 'annonceur') {
-        routeur.push('/dashboard-annonceur/annonces-postees');
+        routeur.push('/dashboard-annonceur');
       } else {
         erreurConnexion.value = 'Rôle non reconnu';
       }

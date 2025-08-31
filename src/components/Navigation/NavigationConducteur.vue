@@ -42,6 +42,12 @@
         <!-- Menu principal -->
         <v-list-subheader class="text-subtitle-1 font-weight-bold">Navigation</v-list-subheader>
         <v-list-item
+          prepend-icon="mdi-video-check"
+          title="Suivi campagnes"
+          to="/dashboard-conducteur/campagnes"
+        ></v-list-item>
+        <v-divider class="my-2"></v-divider>
+        <v-list-item
           prepend-icon="mdi-magnify"
           title="Annonces disponibles"
           to="/dashboard-conducteur/annonces-disponibles"
@@ -53,14 +59,21 @@
           :badge-props="{ content: candidaturesEnAttente.length, color: 'warning' }"
         ></v-list-item>
         <v-list-item
+          prepend-icon="mdi-account-check"
+          title="Mes briefs"
+          to="/dashboard-conducteur/liste-design"
+          :badge-props="{ content: candidaturesEnAttente.length, color: 'warning' }"
+        ></v-list-item>
+        <v-list-item
           prepend-icon="mdi-file-document"
           title="Mes contrats"
-          to="/dashboard/mes-contrats"
+          to="/dashboard-conducteur/contrats"
         ></v-list-item>
+
         <v-list-item
           prepend-icon="mdi-currency-usd"
           title="Mes paiements"
-          to="/dashboard/mes-paiements"
+          to="/dashboard-conducteur/paiements"
         ></v-list-item>
         <v-divider class="my-2"></v-divider>
         <v-list-item
@@ -109,7 +122,7 @@ const chargerInfosUtilisateur = async () => {
   }
 
   try {
-    const reponse = await axios.get('http://localhost:8000/get_utilisateur_infos_conducteur.php', {
+    const reponse = await axios.get('http://localhost:8080/utilisateurs/get_utilisateur_infos_conducteur.php', {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (reponse.data.success) {

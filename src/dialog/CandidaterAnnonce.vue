@@ -114,7 +114,7 @@ const soumettreCandidature = async () => {
   enCoursDeSoumission.value = true;
   try {
     const token = localStorage.getItem('token');
-    const reponse = await axios.post('http://localhost:8000/candidater_annonce.php', {
+    const reponse = await axios.post('http://localhost:8080/candidatures/candidater_annonce.php', {
       annonce_id: props.annonceId,
       message: formulaire.value.message,
       marque_voiture: formulaire.value.marqueVoiture,

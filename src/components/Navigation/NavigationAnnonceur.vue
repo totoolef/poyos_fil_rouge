@@ -21,6 +21,12 @@
     >
       <v-list nav>
         <v-list-item
+          prepend-icon="mdi-clipboard-check-outline"
+          title="Suivi campagnes"
+          to="/dashboard-annonceur/suivi-campagnes"
+        ></v-list-item>
+        <v-divider class="my-2"></v-divider>
+        <v-list-item
           prepend-icon="mdi-bullhorn"
           title="Annonces postées"
           to="/dashboard-annonceur/annonces-postees"
@@ -32,11 +38,21 @@
         ></v-list-item>
         <v-list-item
           prepend-icon="mdi-file-document"
-          title="Contrats en cours"
-          to="/dashboard-annonceur/contrats"
+          title="Candidatures acceptées"
+          to="/dashboard-annonceur/candidatures-acceptees"
         ></v-list-item>
         <v-list-item
-          prepend-icon="mdi-currency-usd"
+          prepend-icon="mdi-vector-square"
+          title="Mes briefs"
+          to="/dashboard-annonceur/liste-brief"
+        ></v-list-item>
+        <v-list-item
+          prepend-icon="mdi-file-sign"
+          title="Contrats & paiements"
+          to="/dashboard-annonceur/contrats-paiements"
+        ></v-list-item>
+        <v-list-item
+          prepend-icon="mdi-currency-eur"
           title="Paiements et commissions"
           to="/dashboard-annonceur/paiements"
         ></v-list-item>
@@ -45,6 +61,11 @@
           prepend-icon="mdi-pencil"
           title="Créer une annonce"
           to="/dashboard-annonceur/creer-annonce"
+        ></v-list-item>
+        <v-list-item
+          prepend-icon="mdi-palette"
+          title="Créer visuel"
+          to="/dashboard-annonceur/deposer-brief"
         ></v-list-item>
         <v-divider class="my-2"></v-divider>
         <v-list-item
@@ -89,7 +110,7 @@ const chargerInfosUtilisateur = async () => {
   }
 
   try {
-    const reponse = await axios.get('http://localhost:8000/get_utilisateur_infos.php', {
+    const reponse = await axios.get('http://localhost:8080/utilisateurs/get_utilisateur_infos.php', {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (reponse.data.success) {

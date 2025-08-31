@@ -125,7 +125,7 @@ const chargerAnnonces = async () => {
   }
 
   try {
-    const reponse = await axios.get('http://localhost:8000/liste_annonces.php', {
+    const reponse = await axios.get('http://localhost:8080/annonces/liste_annonces.php', {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (reponse.data.success) {
