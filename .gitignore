@@ -25,3 +25,7 @@ dist-ssr
 php/uploads/pose_videos/*.mp4
 php/**/uploads/**
 php/**/uploads/**
+vendor/
+.env
+vendor/
+.env
