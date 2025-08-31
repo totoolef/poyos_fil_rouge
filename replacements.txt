@@ -1,0 +1,11 @@
+regex>sk_test_[A-Za-z0-9]+
+REDACTED_STRIPE_TEST_KEY
+
+regex>sk_live_[A-Za-z0-9]+
+REDACTED_STRIPE_LIVE_KEY
+
+regex>pk_test_[A-Za-z0-9]+
+REDACTED_STRIPE_TEST_PK
+
+regex>pk_live_[A-Za-z0-9]+
+REDACTED_STRIPE_LIVE_PK

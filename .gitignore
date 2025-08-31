@@ -22,10 +22,19 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Uploads
 php/uploads/pose_videos/*.mp4
 php/**/uploads/**
-php/**/uploads/**
+
+# Dependencies
 vendor/
+
+# Environment variables
 .env
-vendor/
-.env
+.env.local
+.env.production
+
+# Configuration files with secrets
+php/config/config.php
+php/config/config_principal.php
